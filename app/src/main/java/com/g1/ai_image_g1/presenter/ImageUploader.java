@@ -37,11 +37,11 @@ public class ImageUploader {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    try {
-                        imageProperty.setImageUrl(response.body().string());
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
+//                    try {
+//                        imageProperty.setImageUrl(response.body().string());
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
                     callback.onSuccess();
                 } else {
                     callback.onError("Failed to upload image");
