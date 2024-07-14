@@ -1,7 +1,10 @@
 package com.g1.ai_image_g1;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Base64;
@@ -13,12 +16,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -39,6 +45,47 @@ public class MainActivity extends AppCompatActivity {
         Button generateButton = findViewById(R.id.genImage);
         generateButton.setOnClickListener(v -> generateImage());
         //setContentView(R.layout.generate_image);
+
+        Button shareImage = findViewById(R.id.shareImage);
+        shareImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) generatedImageView.getDrawable();
+                Bitmap bitmap = bitmapDrawable.getBitmap();
+                shareImageAndText(bitmap);
+            }
+        });
+    }
+
+    private void shareImageAndText(Bitmap bitmap) {
+        Uri uri = getImageToShare(bitmap);
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        intent.putExtra(Intent.EXTRA_TEXT, "Image Text");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "Image Subject");
+        intent.setType("image/*");
+        startActivity(Intent.createChooser(intent, "Share via"));
+    }
+
+    private Uri getImageToShare(Bitmap bitmap) {
+        File folder = new File(getCacheDir(), "images");
+        Uri uri = null;
+        try {
+            folder.mkdirs();
+            File file = new File(folder, "image.jpg");
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fileOutputStream);
+            fileOutputStream.flush();
+            fileOutputStream.close();
+
+            uri = FileProvider.getUriForFile(this, "com.g1.ai_image_g1", file);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            //Toast.makeText(MainActivity.this,"", ex.getMessage(),Toast.LENGTH_SHORT).show();
+        }
+        return uri;
     }
 
     private void generateImage() {
