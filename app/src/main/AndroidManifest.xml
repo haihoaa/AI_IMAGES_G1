@@ -12,13 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AI_IMAGE_G1"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        >
         <activity
-            android:name=".MainActivity"
+            android:name="com.g1.ai_image_g1.view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
