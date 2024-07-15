@@ -13,12 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.g1.ai_image_g1.R;
 import com.g1.ai_image_g1.presenter.GenerateImage;
+import com.g1.ai_image_g1.presenter.SaveImage;
 
-public class MainActivity extends AppCompatActivity implements GenerateImageView {
+public class MainActivity extends AppCompatActivity implements GenerateImageView,SaveGeneratedImageView {
 
     private EditText promptEditText;
     private ImageView generatedImageView;
     private GenerateImage presenter;
+    private SaveImage saveImagePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,19 +33,20 @@ public class MainActivity extends AppCompatActivity implements GenerateImageView
         Button btnSaveImage = findViewById(R.id.btnSaveToPhone);
 
         presenter = new GenerateImage(this);
+        saveImagePresenter = new SaveImage(this);
         btnSaveImage.setOnClickListener(v -> {
             // Check if an image has been generated
             if (generatedImageView.getDrawable() != null) {
                 Bitmap bitmap = ((BitmapDrawable) generatedImageView.getDrawable()).getBitmap();
-//                if (saveImageToGallery(bitmap)) {
-//                    Toast.makeText(MainActivity.this, "Image saved to gallery", Toast.LENGTH_LONG).show();
-//                } else {
-//                    Toast.makeText(MainActivity.this, "Failed to save image", Toast.LENGTH_SHORT).show();
-//                }
+                if ( saveImagePresenter.saveImageToGallery(bitmap)) {
+                    Toast.makeText(MainActivity.this, "Image saved to gallery", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, "Failed to save image", Toast.LENGTH_SHORT).show();
+                }
             }
-//            else {
-//                Toast.makeText(MainActivity.this, "No image to save", Toast.LENGTH_SHORT).show();
-//            }
+            else {
+                Toast.makeText(MainActivity.this, "No image to save", Toast.LENGTH_SHORT).show();
+            }
         });
         generateButton.setOnClickListener(v -> {
             String prompt = promptEditText.getText().toString().trim();
