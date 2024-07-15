@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements GenerateImageView
         promptEditText = findViewById(R.id.inputPrompt);
         generatedImageView = findViewById(R.id.genImageView);
         Button generateButton = findViewById(R.id.genImage);
+        Button btnSaveImage = findViewById(R.id.btnSaveToPhone);
 
         presenter = new GenerateImage(this);
 
