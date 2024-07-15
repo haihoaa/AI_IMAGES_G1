@@ -33,7 +33,17 @@ public class MainActivity extends AppCompatActivity implements GenerateImageView
         presenter = new GenerateImage(this);
         btnSaveImage.setOnClickListener(v -> {
             // Check if an image has been generated
-           
+            if (generatedImageView.getDrawable() != null) {
+                Bitmap bitmap = ((BitmapDrawable) generatedImageView.getDrawable()).getBitmap();
+//                if (saveImageToGallery(bitmap)) {
+//                    Toast.makeText(MainActivity.this, "Image saved to gallery", Toast.LENGTH_LONG).show();
+//                } else {
+//                    Toast.makeText(MainActivity.this, "Failed to save image", Toast.LENGTH_SHORT).show();
+//                }
+            }
+//            else {
+//                Toast.makeText(MainActivity.this, "No image to save", Toast.LENGTH_SHORT).show();
+//            }
         });
         generateButton.setOnClickListener(v -> {
             String prompt = promptEditText.getText().toString().trim();
