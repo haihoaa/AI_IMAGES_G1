@@ -1,6 +1,7 @@
 package com.g1.ai_image_g1.view;
 
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +31,10 @@ public class MainActivity extends AppCompatActivity implements GenerateImageView
         Button btnSaveImage = findViewById(R.id.btnSaveToPhone);
 
         presenter = new GenerateImage(this);
-
+        btnSaveImage.setOnClickListener(v -> {
+            // Check if an image has been generated
+           
+        });
         generateButton.setOnClickListener(v -> {
             String prompt = promptEditText.getText().toString().trim();
             presenter.generateImage(prompt);
