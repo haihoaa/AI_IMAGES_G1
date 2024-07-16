@@ -6,4 +6,5 @@
     <color name="status_bar_color">#009688</color>
     <color name="list_item_color">#fff</color>
 
+<color name="colorAccent">#00FF00</color>
 </resources>

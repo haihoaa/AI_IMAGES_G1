@@ -3,4 +3,12 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="successDownloadText">Đã tải ảnh thành công!</string>
+
+<string name="back_button">Back</string>
+<string name="create">Create</string>
+<string name="add_motion">Add motion</string>
+<string name="add_character">Add character</string>
+<string name="model_v2_turbo">V2-Turbo</string>
+<string name="background_original">Original</string>
+<string name="generate">Generate</string>
 </resources>
