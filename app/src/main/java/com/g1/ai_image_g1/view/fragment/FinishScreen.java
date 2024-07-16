@@ -18,8 +18,12 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 
 import com.g1.ai_image_g1.R;
@@ -34,25 +38,42 @@ public class FinishScreen extends Fragment {
     private ProgressBar progressBar;
     private String imageUrl;
     private TextView successText;
+    CardView cardImage;
+
+    public void bindingView(View view){
+        outputImage = view.findViewById(R.id.outputImage);
+        downloadButton = view.findViewById(R.id.download);
+        progressBar = view.findViewById(R.id.progressBar);
+        successText = view.findViewById(R.id.successText);
+        cardImage = view.findViewById(R.id.CardImage);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_finish_screen, container, false);
-
-        outputImage = view.findViewById(R.id.outputImage);
-        downloadButton = view.findViewById(R.id.download);
-        progressBar = view.findViewById(R.id.progressBar);
-        successText = view.findViewById(R.id.successText);
+        bindingView(view);
         progressBar.setVisibility(View.GONE);
+
         Bundle bundle = getArguments();
         if (bundle != null) {
             Bitmap generatedImage = bundle.getParcelable("generatedImage", Bitmap.class);
             imageUrl = bundle.getString("imageUrl");
             outputImage.setImageBitmap(generatedImage);
+            ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) cardImage.getLayoutParams();
+            if(bundle.getString("imageHeight") == "768"){
+                layoutParams.dimensionRatio = "H,2:3";
+            }
+            cardImage.setLayoutParams(layoutParams);
+            bundle.clear();
         }
         downloadButton.setOnClickListener(v -> downloadImageNew("1",imageUrl));
-
+        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Navigation.findNavController(requireView()).navigateUp();
+            }
+        });
         return view;
     }
     private void downloadImageNew(String filename, String downloadUrlOfImage) {

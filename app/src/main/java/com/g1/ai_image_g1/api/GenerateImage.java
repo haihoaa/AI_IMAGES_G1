@@ -31,10 +31,7 @@ public class GenerateImage {
         this.service = RetrofitClient.getGenerateClient().create(GenImageService.class);
     }
 
-    public void generateImage(ImageModel image, GenerateImageCallback callback) {
-        String steps = "20";
-        image.setPrompt(image.getPreparePrompt() + image.getPrompt());
-        image.setSteps(steps);
+    public void generateImageApiCall(ImageModel image, GenerateImageCallback callback) {
         RequestBody requestData = createRqData(image);
         Call<ResponseBody> callGenerate = service.generateImage(requestData);
         callGenerate.enqueue(new Callback<ResponseBody>() {
@@ -45,9 +42,9 @@ public class GenerateImage {
                         String responseString = readStream(inputStream);
                         JSONObject responseBody = new JSONObject(responseString);
                         String base64Image = responseBody.getJSONArray("images").getString(0);
-                        byte[] decodedString = Base64.decode(base64Image, Base64.DEFAULT);
-                        Bitmap generatedImage = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                        handleUploadImage(base64Image,generatedImage, image, callback);
+                        byte[] decodedImage = Base64.decode(base64Image, Base64.DEFAULT);
+                        Bitmap generatedImage = BitmapFactory.decodeByteArray(decodedImage, 0, decodedImage.length);
+                        handleUploadImage(decodedImage,generatedImage, image, callback);
                     } catch (IOException | JSONException e) {
                         callback.generateError("Error reading response");
                     }
@@ -63,23 +60,23 @@ public class GenerateImage {
         });
     }
 
-    private RequestBody createRqData(ImageModel imageProperty) {
+    private RequestBody createRqData(ImageModel image) {
         JSONObject requestData = new JSONObject();
         try {
-            requestData.put("prompt", imageProperty.getPrompt());
-            requestData.put("negative_prompt", imageProperty.getPrepareNegative());
-            requestData.put("steps", imageProperty.getSteps());
-            requestData.put("sampler_index", imageProperty.getSamplerIndex());
-            requestData.put("sampler_name", imageProperty.getSamplerName());
-            requestData.put("height", imageProperty.getHeight());
-            requestData.put("width", imageProperty.getWidth());
+            requestData.put("prompt", image.getPrompt());
+            requestData.put("negative_prompt", image.getPrepareNegative());
+            requestData.put("steps", image.getSteps());
+            requestData.put("sampler_index", image.getSamplerIndex());
+            requestData.put("sampler_name", image.getSamplerName());
+            requestData.put("height", image.getHeight());
+            requestData.put("width", image.getWidth());
         } catch (JSONException ignored) {
         }
         return RequestBody.create(MediaType.parse("application/json"), requestData.toString());
     }
 
-    private void handleUploadImage(String base64Image, Bitmap generatedImage, ImageModel image, GenerateImageCallback callback) {
-        ImageUploader.uploadImage(base64Image, image, new ImageUploader.UploadCallback() {
+    private void handleUploadImage(byte[] decodedImage, Bitmap generatedImage, ImageModel image, GenerateImageCallback callback) {
+        ImageUploader.uploadImage(decodedImage, image, new ImageUploader.UploadCallback() {
             @Override
             public void onSuccess(String imageUrl) {
                 callback.generateSuccess(generatedImage,image.getImageUrl());

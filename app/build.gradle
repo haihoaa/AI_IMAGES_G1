@@ -37,6 +37,7 @@ dependencies {
     implementation libs.converter.gson
     implementation libs.logging.interceptor
     implementation libs.gson
+    implementation libs.fragment
     implementation libs.navigation.fragment
     implementation libs.navigation.ui
     implementation(libs.sdp.android)

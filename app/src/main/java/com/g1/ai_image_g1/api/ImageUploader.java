@@ -17,9 +17,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ImageUploader {
-    public static void uploadImage(String base64Image, ImageModel imageProperty, UploadCallback callback) {
+    public static void uploadImage(byte[] decodedImage, ImageModel imageProperty, UploadCallback callback) {
         String apiKey = "anh.moe_public_api";
-        File imageFile = DecodeImage.convertBase64ToFile(base64Image);
+        File imageFile = DecodeImage.convertByteToFile(decodedImage);
         if (imageFile == null) {
             callback.onError("Failed to convert base64 to file");
             return;

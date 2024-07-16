@@ -14,7 +14,7 @@ import com.g1.ai_image_g1.R;
 
 public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHolder> {
 
-    private final String[] modelNames = {"Anime", "Girls", "Animal"};
+    private final String[] modelNames = {"Korean Girl", "Beautiful Girl" , "Anime"};
     private int selectedPosition = -1;
     private final OnItemClickListener onItemClickListener;
 
@@ -40,11 +40,9 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
         return modelNames.length;
     }
 
-    public String getSelectedModel() {
-        if (selectedPosition != -1) {
-            return modelNames[selectedPosition];
-        }
-        return null;
+    public  int getSelectedModel() {
+            return selectedPosition;
+
     }
 
     public interface OnItemClickListener {
@@ -63,13 +61,15 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
             checkBox = itemView.findViewById(R.id.checkBox);
 
             itemView.setOnClickListener(v -> {
-                if (getAdapterPosition() == RecyclerView.NO_POSITION) {
+                int position = getBindingAdapterPosition();
+                if (position == RecyclerView.NO_POSITION) {
                     return;
                 }
+
                 notifyItemChanged(selectedPosition);
-                selectedPosition = getAdapterPosition();
+                selectedPosition = position;
                 notifyItemChanged(selectedPosition);
-                onItemClickListener.onItemClick(getAdapterPosition());
+                onItemClickListener.onItemClick(position);
             });
         }
     }

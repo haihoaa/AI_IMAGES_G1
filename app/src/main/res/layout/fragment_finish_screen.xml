@@ -9,8 +9,9 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/CardImage"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_250sdp"
+        android:layout_height="0dp"
         android:layout_margin="@dimen/_8sdp"
+        app:layout_constraintDimensionRatio="H,1:1"
         android:visibility="visible"
         app:cardCornerRadius="@dimen/_8sdp"
         app:cardElevation="@dimen/_2sdp"
@@ -28,7 +29,7 @@
                 android:id="@+id/outputImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
+                 />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -37,10 +38,11 @@
         android:id="@+id/download"
         android:layout_width="0dp"
         android:layout_height="@dimen/_40sdp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         android:text="Tải ảnh"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="@+id/CardImage"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/CardImage"
         app:layout_constraintTop_toBottomOf="@+id/CardImage" />
 

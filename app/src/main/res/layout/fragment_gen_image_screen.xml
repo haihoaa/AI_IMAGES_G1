@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:text="Kích thước ảnh"
                 android:textColor="@color/black"
-                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 />
 
             <RadioGroup
@@ -89,9 +89,9 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="256 x 256"
-                    android:id="@+id/w256h256"
-                    android:textSize="@dimen/_9sdp"
+                    android:text="256x256"
+                    android:id="@+id/wh256"
+                    android:textSize="@dimen/_12sdp"
                     />
 
                 <RadioButton
@@ -101,17 +101,17 @@
                     android:checked="true"
                     android:layout_height="wrap_content"
                     android:text="512x512"
-                    android:id="@+id/w512h512"
-                    android:textSize="@dimen/_9sdp"
+                    android:id="@+id/wh512"
+                    android:textSize="@dimen/_12sdp"
                     />
 
                 <RadioButton
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="1024 x 1024"
-                    android:id="@+id/w1024h1024"
-                    android:textSize="@dimen/_9sdp"
+                    android:text="512 x 768"
+                    android:id="@+id/w512h768"
+                    android:textSize="@dimen/_12sdp"
                     />
 
 

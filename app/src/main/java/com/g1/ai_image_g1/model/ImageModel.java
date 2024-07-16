@@ -6,10 +6,7 @@ public class ImageModel {
     private String steps;
     private static final String PREPARE_PROMPT = "(RAW photo, best quality), (realistic, photo-realistic:1.3), masterpiece, " +
             "an extremely delicate and beautiful, extremely detailed, CG, unity , 2k wallpaper, Amazing, " +
-            "finely detail, extremely detailed CG unity 8k wallpaper, huge filesize, ultra-detailed, highres, " +
-            "absurdres, soft light, beautiful detailed girl, detailed fingers, extremely detailed eyes and face, " +
-            "beautiful detailed nose, detailed face, beautiful detailed eyes, light on face, looking at viewer, " +
-            "1girl, cute, young, mature face, realistic face, realistic body, beautiful detailed thigh, ";
+            "finely detail, extremely detailed CG unity 8k wallpaper, huge filesize, ultra-detailed, highres, absurdres, cute,";
     private static final String PREPARE_NEGATIVE = "(nude:2), (nsfw:2), breast, (naked:2), paintings, sketches, (worst quality:2), (low quality:2), " +
             "(normal quality:2), lowres, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, " +
             "glans, extra fingers, fewer fingers, ((watermark:2)), (white letters:1), nipples, bad anatomy, " +
@@ -20,11 +17,16 @@ public class ImageModel {
             "polar lowres, bad body, bad proportions, gross proportions, wrong feet bottom render, " +
             "abdominal stretch, briefs, knickers, kecks, thong, {{fused fingers}}, {{bad body}}, " +
             "EasyNegative, bad proportion body to legs, wrong toes, extra toes, missing toes, weird toes, 2 body, pussy, 2 upper, 2 lower, 2 head, 3 hand, 3 feet, " +
-            "extra long leg, super long leg, mirrored image, mirrored noise, aged up, old";
+            "extra long leg, super long leg, mirrored image, mirrored noise, aged up, old, bikini";
     private static final String SAMPLER_INDEX = "DPM++ SDE Karras";
     private static final String SAMPLER_NAME = "DPM++ SDE Karras";
-    private static final String IMAGE_HEIGHT = "768";
-    private static final String IMAGE_WIDTH = "512";
+    private String width;
+    private String height;
+    private String imageUrl;
+
+
+
+
 
     public String getImageUrl() {
         return imageUrl;
@@ -33,8 +35,6 @@ public class ImageModel {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
-    private String imageUrl;
 
 
     public ImageModel() {
@@ -64,14 +64,6 @@ public class ImageModel {
         return PREPARE_NEGATIVE;
     }
 
-    public String getHeight() {
-        return IMAGE_HEIGHT;
-    }
-
-    public String getWidth() {
-        return IMAGE_WIDTH;
-    }
-
     public String getSamplerIndex() {
         return SAMPLER_INDEX;
     }
@@ -80,4 +72,19 @@ public class ImageModel {
         return SAMPLER_NAME;
     }
 
+    public String getWidth() {
+        return width;
+    }
+
+    public void setWidth(String width) {
+        this.width = width;
+    }
+
+    public String getHeight() {
+        return height;
+    }
+
+    public void setHeight(String height) {
+        this.height = height;
+    }
 }

@@ -14,6 +14,7 @@ public interface GenImageService {
     })
     @POST("/sdapi/v1/txt2img")
     Call<ResponseBody> generateImage(@Body RequestBody requestData);
+
 }
 
 
