@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.g1.ai_image_g1.view.fragment.GenImageScreen">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/_5sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nội dung"
+                android:textColor="@color/black"
+                android:includeFontPadding="false"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:background="@drawable/prompt_bg"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:padding="@dimen/_5sdp"
+                android:inputType="textMultiLine|text"
+                android:hint="Nội dung ảnh muốn tạo"
+                android:textSize="@dimen/_10sdp"
+                android:gravity="top"
+                android:id="@+id/edtPrompt"
+                android:textColorHint="@color/night"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nội dung cần tránh"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:id="@+id/edtNegative"
+                android:hint="Nhập nội dung bạn cần tránh tạo ra"
+                android:textSize="@dimen/_10sdp"
+                android:background="@drawable/prompt_bg"
+                android:padding="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:inputType="textMultiLine|text"
+                android:gravity="top"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kích thước ảnh"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/radioGroup"
+                android:layout_marginTop="@dimen/_8sdp"
+                >
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="256 x 256"
+                    android:id="@+id/w256h256"
+                    android:textSize="@dimen/_9sdp"
+                    />
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    android:checked="true"
+                    android:layout_height="wrap_content"
+                    android:text="512x512"
+                    android:id="@+id/w512h512"
+                    android:textSize="@dimen/_9sdp"
+                    />
+
+                <RadioButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="1024 x 1024"
+                    android:id="@+id/w1024h1024"
+                    android:textSize="@dimen/_9sdp"
+                    />
+
+
+            </RadioGroup>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chon mau"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_8sdp"
+                />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerView"
+                android:layout_marginTop="@dimen/_8sdp"
+                tools:listitem="@layout/list_item_models"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                />
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:id="@+id/btnGenerate"
+                android:text="Tạo ảnh"
+                android:layout_marginBottom="@dimen/_10sdp"
+                />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

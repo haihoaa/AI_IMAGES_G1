@@ -25,7 +25,16 @@ public class ImageModel {
     private static final String SAMPLER_NAME = "DPM++ SDE Karras";
     private static final String IMAGE_HEIGHT = "768";
     private static final String IMAGE_WIDTH = "512";
-    //private String ImageUrl;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    private String imageUrl;
 
 
     public ImageModel() {
@@ -71,7 +80,4 @@ public class ImageModel {
         return SAMPLER_NAME;
     }
 
-    //public void setImageUrl(String imageUrl) {
-        //ImageUrl = imageUrl;
-    //}
 }
