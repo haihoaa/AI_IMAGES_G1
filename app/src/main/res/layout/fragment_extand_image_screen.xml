@@ -25,31 +25,47 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chọn ảnh"
+                android:text="@string/chon_anh"
                 android:textColor="@color/primary"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"
                 android:textSize="20sp"
                 />
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:id="@+id/selectedImageView"
-                android:contentDescription="Chọn ảnh"
-                android:clickable="true"
-                android:focusable="true"
-                android:onClick="selectImage"
-                android:scaleType="centerCrop"
-                android:background="@drawable/image_border_bg"
-                android:elevation="4dp"
-                />
+                android:padding="16dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/selectedImageView"
+                    android:contentDescription="@string/chon_anh"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="selectImage"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/image_border_bg"
+                    android:elevation="4dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chon_anh"
+                    android:textColor="@color/primary"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:textSize="16sp"
+                    />
+            </FrameLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kích thước ảnh"
+                android:text="@string/kich_thuoc_anh"
                 android:textColor="@color/primary"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"
@@ -67,65 +83,22 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="256 x 256"
-                    android:id="@+id/w256h256"
-                    android:textSize="16sp"
-                    android:buttonTint="@color/primary"
-                    />
-
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="512 x 512"
-                    android:id="@+id/w512h512"
-                    android:textSize="16sp"
-                    android:buttonTint="@color/primary"
-                    />
-
-                <RadioButton
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:text="1024 x 1024"
-                    android:id="@+id/w1024h1024"
+                    android:text="@string/tang_2_lan"
+                    android:id="@+id/doubleTimes"
                     android:textSize="16sp"
                     android:buttonTint="@color/primary"
                     />
 
             </RadioGroup>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chọn mẫu"
-                android:textColor="@color/primary"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"
-                android:textSize="20sp"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/recyclerView"
-                android:layout_marginBottom="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/recycler_view_bg"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:elevation="4dp"
-                />
-
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btnGenerate"
-                android:text="Tạo ảnh"
+                android:id="@+id/btnExtend"
+                android:text="@string/tao_anh"
                 android:layout_marginBottom="16dp"
                 android:textColor="@android:color/white"
                 android:backgroundTint="@color/primary"
-                android:cornerRadius="8dp"
                 android:textSize="18sp"
                 />
 
@@ -143,5 +116,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+        app:itemIconSize="32dp"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

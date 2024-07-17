@@ -3,7 +3,6 @@ package com.g1.ai_image_g1.network;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -14,7 +13,7 @@ public class RetrofitClient {
 
     public static Retrofit getGenerateClient() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(3, TimeUnit.MINUTES).addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .connectTimeout(3, TimeUnit.MINUTES)
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
                 .build();
@@ -28,10 +27,11 @@ public class RetrofitClient {
     }
 
     public static Retrofit getUploadClient() {
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(3, TimeUnit.MINUTES).addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .readTimeout(1, TimeUnit.MINUTES)
-                .writeTimeout(1, TimeUnit.MINUTES)
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        builder.connectTimeout(3, TimeUnit.MINUTES);
+        builder.readTimeout(1, TimeUnit.MINUTES);
+        builder.writeTimeout(1, TimeUnit.MINUTES);
+        OkHttpClient okHttpClient = builder
                 .build();
         return new Retrofit.Builder()
                 .baseUrl(UPLOAD_URL).client(okHttpClient)

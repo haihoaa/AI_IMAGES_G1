@@ -3,4 +3,16 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="successDownloadText">Đã tải ảnh thành công!</string>
+    <string name="action_image">Generate Image</string>
+    <string name="action_zoom">Extend Image</string>
+    <string name="noi_dung_anh_muon_tao">Nội dung ảnh muốn tạo</string>
+    <string name="noi_dung">Nội dung</string>
+    <string name="kich_thuoc_anh">Kích thước ảnh</string>
+    <string name="chon_mau">Chon mau</string>
+    <string name="tao_anh">Tạo ảnh</string>
+    <string name="_512_x_768">512 x 768</string>
+    <string name="_256x256">256x256</string>
+    <string name="_512x512">512x512</string>
+    <string name="chon_anh">Chọn ảnh</string>
+    <string name="tang_2_lan">Tăng 2 lần</string>
 </resources>

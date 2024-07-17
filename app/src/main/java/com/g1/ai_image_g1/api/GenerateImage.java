@@ -4,9 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
 
+import androidx.annotation.NonNull;
+
 import com.g1.ai_image_g1.model.ImageModel;
 import com.g1.ai_image_g1.network.GenImageService;
 import com.g1.ai_image_g1.network.RetrofitClient;
+import com.g1.ai_image_g1.utils.StreamReader;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,10 +39,10 @@ public class GenerateImage {
         Call<ResponseBody> callGenerate = service.generateImage(requestData);
         callGenerate.enqueue(new Callback<ResponseBody>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+            public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 if (response.isSuccessful() && response.body() != null) {
                     try (InputStream inputStream = response.body().byteStream()) {
-                        String responseString = readStream(inputStream);
+                        String responseString = StreamReader.readStream(inputStream);
                         JSONObject responseBody = new JSONObject(responseString);
                         String base64Image = responseBody.getJSONArray("images").getString(0);
                         byte[] decodedImage = Base64.decode(base64Image, Base64.DEFAULT);
@@ -89,20 +92,12 @@ public class GenerateImage {
         });
     }
 
-    private String readStream(InputStream inputStream) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
-        }
-        return sb.toString();
-    }
+
 
     public interface GenerateImageCallback {
         void generateSuccess(Bitmap generatedImage, String imageUrl);
         void generateError(String errorMessage);
-//        void onUploadSuccess();
+//       void onUploadSuccess();
     }
 }
 

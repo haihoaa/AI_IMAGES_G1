@@ -14,7 +14,7 @@ import com.g1.ai_image_g1.R;
 
 public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHolder> {
 
-    private final String[] modelNames = {"Korean Girl", "Beautiful Girl" , "Anime"};
+    private final String[] modelNames = {"Korean Girl", "Beautiful Girl"};
     private int selectedPosition = -1;
     private final OnItemClickListener onItemClickListener;
 
@@ -32,7 +32,27 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
     @Override
     public void onBindViewHolder(@NonNull ModelViewHolder holder, int position) {
         holder.modelName.setText(modelNames[position]);
+        int drawableResId;
+        String modelName = modelNames[position];
+        switch (modelName) {
+            case "Korean Girl":
+                drawableResId = R.drawable.korean;
+                break;
+            case "Beautiful Girl":
+                drawableResId = R.drawable.girl;
+                break;
+            default:
+                drawableResId = R.drawable.girl;
+                break;
+        }
+        holder.modelImage.setImageResource(drawableResId);
+
         holder.checkBox.setChecked(position == selectedPosition);
+
+        holder.checkBox.setOnClickListener(v -> {
+            setSelectedPosition(position);
+            onItemClickListener.onItemClick(position);
+        });
     }
 
     @Override
@@ -40,21 +60,31 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
         return modelNames.length;
     }
 
-    public  int getSelectedModel() {
-            return selectedPosition;
+    public String getSelectedModel() {
+        if (selectedPosition != -1 && selectedPosition < modelNames.length) {
+            return modelNames[selectedPosition];
+        } else {
+            return "";
+        }
+    }
 
+    public void setSelectedPosition(int position) {
+        int previousSelected = selectedPosition;
+        selectedPosition = position;
+        notifyItemChanged(previousSelected);
+        notifyItemChanged(selectedPosition);
     }
 
     public interface OnItemClickListener {
         void onItemClick(int position);
     }
 
-    public class ModelViewHolder extends RecyclerView.ViewHolder {
+    public static class ModelViewHolder extends RecyclerView.ViewHolder {
         ImageView modelImage;
         TextView modelName;
         CheckBox checkBox;
 
-        ModelViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
+        public ModelViewHolder(@NonNull View itemView, OnItemClickListener listener) {
             super(itemView);
             modelImage = itemView.findViewById(R.id.modelImages);
             modelName = itemView.findViewById(R.id.modelName);
@@ -62,14 +92,9 @@ public class ModelAdapter extends RecyclerView.Adapter<ModelAdapter.ModelViewHol
 
             itemView.setOnClickListener(v -> {
                 int position = getBindingAdapterPosition();
-                if (position == RecyclerView.NO_POSITION) {
-                    return;
+                if (position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(position);
                 }
-
-                notifyItemChanged(selectedPosition);
-                selectedPosition = position;
-                notifyItemChanged(selectedPosition);
-                onItemClickListener.onItemClick(position);
             });
         }
     }

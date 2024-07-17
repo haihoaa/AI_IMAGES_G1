@@ -13,10 +13,33 @@
         <action
             android:id="@+id/action_home2_to_downloader"
             app:destination="@id/downloader" />
+        <action
+            android:id="@+id/action_gen_to_extend"
+            app:destination="@id/extend" />
+    </fragment>
+    <fragment
+        android:id="@+id/extend"
+        android:name="com.g1.ai_image_g1.view.fragment.ExtendImageScreen"
+        android:label="fragment_finish_screen"
+        tools:layout="@layout/fragment_extand_image_screen" >
+        <action
+            android:id="@+id/action_extend_to_downloader"
+            app:destination="@id/downloader" />
+        <action
+            android:id="@+id/action_extend_to_gen"
+            app:destination="@id/home2"/>
+
     </fragment>
     <fragment
         android:id="@+id/downloader"
         android:name="com.g1.ai_image_g1.view.fragment.FinishScreen"
         android:label="fragment_finish_screen"
         tools:layout="@layout/fragment_finish_screen" />
+    <action
+        android:id="@+id/action_downloader_to_extend"
+        app:destination="@id/extend" />
+    <action
+        android:id="@+id/action_downloader_to_gen"
+        app:destination="@id/home2" />
+
 </navigation>

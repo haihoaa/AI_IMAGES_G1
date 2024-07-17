@@ -6,7 +6,7 @@ public class ImageModel {
     private String steps;
     private static final String PREPARE_PROMPT = "(RAW photo, best quality), (realistic, photo-realistic:1.3), masterpiece, " +
             "an extremely delicate and beautiful, extremely detailed, CG, unity , 2k wallpaper, Amazing, " +
-            "finely detail, extremely detailed CG unity 8k wallpaper, huge filesize, ultra-detailed, highres, absurdres, cute,";
+            "finely detail, extremely detailed CG unity 8k wallpaper, huge filesize, ultra-detailed, highres, absurdres, cute, beautiful, Humanistic Photography,film photography,long shot,negative space, 1girl, ";
     private static final String PREPARE_NEGATIVE = "(nude:2), (nsfw:2), breast, (naked:2), paintings, sketches, (worst quality:2), (low quality:2), " +
             "(normal quality:2), lowres, ((monochrome)), ((grayscale)), skin spots, acnes, skin blemishes, age spot, " +
             "glans, extra fingers, fewer fingers, ((watermark:2)), (white letters:1), nipples, bad anatomy, " +

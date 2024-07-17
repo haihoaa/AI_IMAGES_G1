@@ -11,7 +11,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nội dung"
+                android:text="@string/noi_dung"
                 android:textColor="@color/black"
                 android:includeFontPadding="false"
                 />
@@ -37,11 +37,12 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_100sdp"
+                android:autofillHints=""
                 android:background="@drawable/prompt_bg"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:padding="@dimen/_5sdp"
                 android:inputType="textMultiLine|text"
-                android:hint="Nội dung ảnh muốn tạo"
+                android:hint="@string/noi_dung_anh_muon_tao"
                 android:textSize="@dimen/_10sdp"
                 android:gravity="top"
                 android:id="@+id/edtPrompt"
@@ -51,28 +52,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nội dung cần tránh"
-                android:textColor="@color/black"
-                android:layout_marginTop="@dimen/_8sdp"
-                />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:id="@+id/edtNegative"
-                android:hint="Nhập nội dung bạn cần tránh tạo ra"
-                android:textSize="@dimen/_10sdp"
-                android:background="@drawable/prompt_bg"
-                android:padding="@dimen/_5sdp"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:inputType="textMultiLine|text"
-                android:gravity="top"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kích thước ảnh"
+                android:text="@string/kich_thuoc_anh"
                 android:textColor="@color/black"
                 android:layout_marginTop="@dimen/_15sdp"
                 />
@@ -89,7 +69,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="256x256"
+                    android:text="@string/_256x256"
                     android:id="@+id/wh256"
                     android:textSize="@dimen/_12sdp"
                     />
@@ -100,7 +80,7 @@
                     android:backgroundTint="@color/white"
                     android:checked="true"
                     android:layout_height="wrap_content"
-                    android:text="512x512"
+                    android:text="@string/_512x512"
                     android:id="@+id/wh512"
                     android:textSize="@dimen/_12sdp"
                     />
@@ -109,7 +89,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="512 x 768"
+                    android:text="@string/_512_x_768"
                     android:id="@+id/w512h768"
                     android:textSize="@dimen/_12sdp"
                     />
@@ -121,7 +101,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Chon mau"
+                android:text="@string/chon_mau"
                 android:textColor="@color/black"
                 android:layout_marginTop="@dimen/_8sdp"
                 />
@@ -143,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:id="@+id/btnGenerate"
-                android:text="Tạo ảnh"
+                android:text="@string/tao_anh"
                 android:layout_marginBottom="@dimen/_10sdp"
                 />
 
@@ -164,5 +144,18 @@
         app:layout_constraintTop_toTopOf="parent"
         android:layout_height="wrap_content" />
 
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginBottom="8dp"
+        app:itemIconSize="32dp"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

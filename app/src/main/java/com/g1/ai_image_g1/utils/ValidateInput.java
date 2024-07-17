@@ -6,11 +6,8 @@ public class ValidateInput {
         if (input.trim().isEmpty()) {
             return false;
         }
-        String regex = ".*[a-zA-Z0-9].*";
-        if (!input.matches(regex)) {
-            return false;
-        }
-        return true;
+        String regex = ".*[a-zA-Z].*";
+        return input.matches(regex);
     }
     public static String modifyPrompt(String input) {
         String[] keywords = {"hair", "eyes"};
